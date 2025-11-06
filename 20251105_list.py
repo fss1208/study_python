@@ -16,10 +16,12 @@ def test_list():
 
 def test_list_initial():
     print("# {}()".format(sys._getframe().f_code.co_name))
-    lst1 = [i for i in range(10)]       # 1차원 배열 초기화
-    lst2 = [[i]*3 for i in range(4)]    # 2차원 배열 초기화 
+    lst1 = [i for i in range(10)]       # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    lst2 = [[i]*3 for i in range(3)]    # [[0, 0, 0], [1, 1, 1], [2, 2, 2]] 
+    lst3 = list(range(0,10))            # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(lst1)
     print(lst2)
+    print(lst3)
 
 def test_list_operator():
     print("# {}()".format(sys._getframe().f_code.co_name))
@@ -125,7 +127,7 @@ def test_list_slicing():
 if (__name__ == "__main__"):
     try:
         print("# 시작")
-        test_list()
+        test_list_initial()
     except Exception as ex:
         print("{} {}".format(type(ex), ex))
     else: # 예외가 발행하지 않을 때만 실행
