@@ -95,32 +95,34 @@ def test_string_method():
     up_str = "PYTHON"
     st_str = "   python   "
     temp, beta = "AbcDEFghi", "β"
-    print("%s >> %s" % (lo_str, lo_str.upper()))            # python >> PYTHON
-    print("%s >> %s" % (up_str, up_str.lower()))            # PYTHON >> python
-    print("%s >> %s" % (lo_str, lo_str.capitalize()))       # python >> Python
-    print("%s >> %s" % (up_str, up_str.capitalize()))       # PYTHON >> Python
-    print("%s >> %s" % (temp, temp.casefold()))             # AbcDEFghi >> abcdefghi
-    print("%s >> %s" % (beta, beta.casefold()))             # β >> β
-    print(lo_str.center(12,"*"))                            # ***python***
-    print("abbcccdddddcc".count("c"))                       # 5
-    print("abbcccdddddcc".count("c",5))                     # 3
-    print("abbcccdddddcc".count("c",5,11))                  # 1 : 종료 인덱스 전까지
-    print(lo_str.endswith("on"))                            # True
-    print(lo_str.endswith("hon"))                           # True
-    print(lo_str.endswith("ho"))                            # False
-    print(lo_str.endswith("tho", 0, 5))                     # True
-    print(no_str.join("-"))                                 # -
-    print("-".join(no_str))                                 # 0-1-2-3-4-5
-    print(",".join(["a", "bb", "ccc"]))                     # a,bb,ccc
-    print("a,bb,ccc".split(","))                               # ["a", "bb", "ccc"]
+    print("%s >> %s" % (lo_str, lo_str.upper()))                    # python >> PYTHON
+    print("%s >> %s" % (up_str, up_str.lower()))                    # PYTHON >> python
+    print("%s >> %s" % (lo_str, lo_str.capitalize()))               # python >> Python
+    print("%s >> %s" % (up_str, up_str.capitalize()))               # PYTHON >> Python
+    print("%s >> %s" % (temp, temp.casefold()))                     # AbcDEFghi >> abcdefghi
+    print("%s >> %s" % (beta, beta.casefold()))                     # β >> β
+    print(lo_str.center(12,"*"))                                    # ***python***
+    print("0113336666633".count("3"))                               # 5
+    print("0113336666633".count("3",5))                             # 3
+    print("0113336666633".count("3",5,11))                          # 1 :  start_index <= 범위 < end_index
+    print(lo_str.endswith("on"))                                    # True
+    print(lo_str.endswith("hon"))                                   # True
+    print(lo_str.endswith("ho"))                                    # False
+    print(lo_str.endswith("tho", 0, 5))                             # True
+    print("a,bb,ccc".split(","))                                    # ["a", "bb", "ccc"]
+    print(",".join(["a", "bb", "ccc"]))                             # a,bb,ccc
+    print("-".join(no_str))                                         # 0-1-2-3-4-5
+    print(no_str.join("-"))                                         # -
+    lst = list(lo_str)
+    print("{} >> {}".format(lst, "".join(lst)))                     # ['p', 'y', 't', 'h', 'o', 'n'] >> python
     print("{} ({})".format(st_str.strip(), len(st_str.strip())))    # python (6)
     print("{} ({})".format(st_str.rstrip(), len(st_str.rstrip())))  #    python (9)
     print("{} ({})".format(st_str.lstrip(), len(st_str.lstrip())))  # python    (9)
-    print(no_str.index("23"))                               # 2
-    print(no_str.index("23", 2))                            # 2
-    print(no_str.index("23", 2, 3))                         # [NG] <class 'ValueError'> substring not found
-    print(no_str.index("23", 3))                            # [NG] <class 'ValueError'> substring not found
-    print(no_str.index("xx"))                               # [NG] <class 'ValueError'> substring not found
+    print(no_str.index("23"))                                       # 2
+    print(no_str.index("23", 2))                                    # 2
+    print(no_str.index("23", 2, 3))                                 # [NG] <class 'ValueError'> substring not found
+    print(no_str.index("23", 3))                                    # [NG] <class 'ValueError'> substring not found
+    print(no_str.index("xx"))                                       # [NG] <class 'ValueError'> substring not found
 
 ###########################################################    
 
