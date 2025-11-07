@@ -121,13 +121,18 @@ def test_list_slicing():
     print(lst[1:])      # [1, 2, 3, 4]
     print(lst[::2])     # [0, 2, 4]
     print(lst[::3])     # [0, 3]
+    print(lst[-1:0])    # []
+    print(lst[-1:0:-1]) # [4, 3, 2, 1]
+    print(lst[-1::-1])  # [4, 3, 2, 1, 0]
+    print(lst[::-1])    # [4, 3, 2, 1, 0]
+    print(lst[::-2])    # [4, 2, 0]
 
 #########################################################    
 
 if (__name__ == "__main__"):
     try:
         print("# 시작")
-        test_list_initial()
+        test_list_slicing()
     except Exception as ex:
         print("{} {}".format(type(ex), ex))
     else: # 예외가 발행하지 않을 때만 실행
