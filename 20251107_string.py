@@ -86,6 +86,24 @@ def test_string_formmating():
     print("{2}\t{0}\t{0}".format(vi, vf, vs))               # α + β   255     255
     print("{ii}\t{ff}\t{ss}".format(ss=vs, ii=vi, ff=vf))   # 255     3.141592    α + β
     print("{0:.2f}".format(vf))                             # 3.14
+    print("{0:>10}".format("test"))                         #       test
+    print("{0:^10}".format("test"))                         #    test
+    print("{0:<10}".format("test"))                         # test      
+    print("{0:4d}".format(7))                               #    7
+    print("{0:04d}".format(7))                              # 0007
+    print("{0:<4}".format(7))                               # 7
+    print("{0:,}".format(123456789))                        # 123,456,789
+    print("{0:.2f}".format(3.141592))                       # 3.14
+    print("{0:.2%}".format(0.12345))                        # 12.35%
+    print("{0:.2e}".format(9253000))                        # 9.25e+06
+    print("{0:#x}".format(255))                             # 0xff
+    print("{0:x}".format(255))                              # ff
+    print("{0:#o}".format(8))                               # 0o10
+    print("{0:o}".format(8))                                # 10
+    print("{0:#b}".format(2))                               # 0b10
+    print("{0:b}".format(2))                                # 10
+    name, age = "KSH", 77   
+    print(f"이름:{name}, 나이:{age}")    # 이름:KSH, 나이:77 (python 3.6 버전부터 사용 가능)
     print("%c" % "xyz")                                     # <class 'TypeError'> %c requires int or char
 
 def test_string_method():
