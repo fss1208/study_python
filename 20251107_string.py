@@ -9,6 +9,9 @@ def test_string():
     print("""'''python'''""")       # '''python'''
     print("Hello " + "python")      # Hello python
     print("python " * 3)            # python python python
+    print(type(p[0]))               # <class 'str'>
+    print(type(p))                  # <class 'str'>
+    print(len(p))                   # 6
     for ch in p:
         print(ch, end=" ")          # p y t h o n
     print()
@@ -79,16 +82,19 @@ def test_string_formmating():
     print("%s" % vs)                                        # α + β : str() 함수를 사용한 것과 동일
     print("%r" % vs)                                        # 'α + β' : repr() 함수를 사용한 것과 동일
     print("%a" % vs)                                        # '\u03b1 + \u03b2' : ascii() 함수를 사용한 것과 동일
-    print("77%%")                                           # 77%%
-    print("77%")                                            # 77%
-    print("%c" % "z")                                       # z
+    print("%10s." % vs)                                     #      α + β.
+    print("%-10s." % vs)                                    # α + β     .     
     print("{}\t{}\t{}".format(vi, vf, vs))                  # 255     3.141592    α + β
     print("{2}\t{0}\t{0}".format(vi, vf, vs))               # α + β   255     255
     print("{ii}\t{ff}\t{ss}".format(ss=vs, ii=vi, ff=vf))   # 255     3.141592    α + β
-    print("{0:.2f}".format(vf))                             # 3.14
+    print("{0:.2f}".format(vf))                             # 3.14 : 0.2f와 같음
+    print("{0:10.2f}".format(vf))                           #       3.14
     print("{0:>10}".format("test"))                         #       test
+    print("{0:-^10}".format("test"))                        # ---test---
     print("{0:^10}".format("test"))                         #    test
+    print("{0:=^10}".format("test"))                        # ===test===
     print("{0:<10}".format("test"))                         # test      
+    print("{{name}}".format())                              # {name}
     print("{0:4d}".format(7))                               #    7
     print("{0:04d}".format(7))                              # 0007
     print("{0:<4}".format(7))                               # 7
@@ -103,7 +109,10 @@ def test_string_formmating():
     print("{0:#b}".format(2))                               # 0b10
     print("{0:b}".format(2))                                # 10
     name, age = "KSH", 77   
-    print(f"이름:{name}, 나이:{age}")    # 이름:KSH, 나이:77 (python 3.6 버전부터 사용 가능)
+    print(f"이름:{name}, 나이:{age}")                        # 이름:KSH, 나이:77 (python 3.6 버전부터 사용 가능)
+    print("%d%%" % 77)                                      # 77%
+    print("%d%" % 77)                                       # <class 'ValueError'> incomplete format
+    print("%c" % "z")                                       # z
     print("%c" % "xyz")                                     # <class 'TypeError'> %c requires int or char
 
 def test_string_method():
@@ -123,6 +132,18 @@ def test_string_method():
     print("0113336666633".count("3"))                               # 5
     print("0113336666633".count("3",5))                             # 3
     print("0113336666633".count("3",5,11))                          # 1 :  start_index <= 범위 < end_index
+    print(lo_str.find("tho"))                                       # 2
+    print(lo_str.find("t"))                                         # 2
+    print(up_str.find("t"))                                         # -1
+    print(lo_str.replace("ytho", "YTHO"))                           # pYTHOn
+    print("123".isdigit())                                          # True
+    print("12a".isdigit())                                          # False
+    print("1 3".isdigit())                                          # False
+    print("abc".isalpha())                                          # True
+    print("ab1".isalpha())                                          # False
+    print("a c".isalpha())                                          # False
+    print(lo_str.startswith("py"))                                  # True
+    print(lo_str.startswith("th"))                                  # False
     print(lo_str.endswith("on"))                                    # True
     print(lo_str.endswith("hon"))                                   # True
     print(lo_str.endswith("ho"))                                    # False
