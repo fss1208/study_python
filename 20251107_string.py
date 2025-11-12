@@ -1,4 +1,5 @@
 import sys
+import KSH
 
 def test_string():
     print("# {}()".format(sys._getframe().f_code.co_name))
@@ -122,41 +123,66 @@ def test_string_method():
     up_str = "PYTHON"
     st_str = "   python   "
     temp, beta = "AbcDEFghi", "β"
+    print("# upper 함수")
     print("%s >> %s" % (lo_str, lo_str.upper()))                    # python >> PYTHON
+    print("# lower 함수")
     print("%s >> %s" % (up_str, up_str.lower()))                    # PYTHON >> python
+    print("# capitalize 함수")
     print("%s >> %s" % (lo_str, lo_str.capitalize()))               # python >> Python
     print("%s >> %s" % (up_str, up_str.capitalize()))               # PYTHON >> Python
+    print("# casefold 함수")
     print("%s >> %s" % (temp, temp.casefold()))                     # AbcDEFghi >> abcdefghi
     print("%s >> %s" % (beta, beta.casefold()))                     # β >> β
+    print("# center 함수")
     print(lo_str.center(12,"*"))                                    # ***python***
+    print("# count 함수")
     print("0113336666633".count("3"))                               # 5
     print("0113336666633".count("3",5))                             # 3
     print("0113336666633".count("3",5,11))                          # 1 :  start_index <= 범위 < end_index
+    print("# find 함수")
     print(lo_str.find("tho"))                                       # 2
     print(lo_str.find("t"))                                         # 2
     print(up_str.find("t"))                                         # -1
-    print(lo_str.replace("ytho", "YTHO"))                           # pYTHOn
+    print("# replace 함수")
+    print("%s >> %s" % (up_str, up_str.replace("YTHO", "ytho")))    # PYTHON >> PythoN
+    print("%s >> %s" % (lo_str, lo_str.replace("YTHO", "ytho")))    # python >> python
+    print("# isdigit 함수")
     print("123".isdigit())                                          # True
     print("12a".isdigit())                                          # False
     print("1 3".isdigit())                                          # False
+    print("# isalpha 함수")
     print("abc".isalpha())                                          # True
     print("ab1".isalpha())                                          # False
     print("a c".isalpha())                                          # False
+    print("# startswith 함수")
     print(lo_str.startswith("py"))                                  # True
     print(lo_str.startswith("th"))                                  # False
+    print("# endswith 함수")
     print(lo_str.endswith("on"))                                    # True
     print(lo_str.endswith("hon"))                                   # True
     print(lo_str.endswith("ho"))                                    # False
     print(lo_str.endswith("tho", 0, 5))                             # True
+    print("# split 함수")
     print("a,bb,ccc".split(","))                                    # ["a", "bb", "ccc"]
+    print("a,bb,ccc".split(",",maxsplit=1))                         # ['a', 'bb,ccc']
+    print("a,bb,ccc".split(",",maxsplit=9))                         # ['a', 'bb', 'ccc']
+    print("a,bb,ccc".split(",",maxsplit=0))                         # ['a,bb,ccc']
+    print("+82-01-2345-6789".split("-",maxsplit=1))                 # ['+82', '01-2345-6789']
+    print("+82-01-2345-6789".split("2-0"))                          # ['+8', '1-2345-6789']
+    print("+82-01-2345-6789".split("A"))                            # ['+82-01-2345-6789']
+    print("# join 함수")
     print(",".join(["a", "bb", "ccc"]))                             # a,bb,ccc
     print("-".join(no_str))                                         # 0-1-2-3-4-5
     print(no_str.join("-"))                                         # -
     lst = list(lo_str)
     print("{} >> {}".format(lst, "".join(lst)))                     # ['p', 'y', 't', 'h', 'o', 'n'] >> python
+    print("# strip 함수 : 문자열 앞과 뒤의 모든 공백과 개행문자를 삭제")   # ' '과 '\n' 문자 제거
+    print("{} ({})".format(st_str, len(st_str)))                    #    python    (12)
     print("{} ({})".format(st_str.strip(), len(st_str.strip())))    # python (6)
     print("{} ({})".format(st_str.rstrip(), len(st_str.rstrip())))  #    python (9)
     print("{} ({})".format(st_str.lstrip(), len(st_str.lstrip())))  # python    (9)
+    print("aaaPythonaaa >> {}".format("aaaPythonaaa".strip("a")))   # aaaPythonaaa >> Python
+    print("aaaPythonaaa >> {}".format("aaaPythonaaa".strip("Pan"))) # aaaPythonaaa >> ytho
     print(no_str.index("23"))                                       # 2
     print(no_str.index("23", 2))                                    # 2
     print(no_str.index("23", 2, 3))                                 # [NG] <class 'ValueError'> substring not found
