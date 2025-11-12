@@ -1,6 +1,12 @@
 import sys
 
-a = 5
+def check_exception(func, arg):
+    try:
+        print(func(arg))
+    except Exception as ex:
+        print("# [NG] {} {}".format(type(ex), ex))
+
+a = 5 # 전역변수
 
 def test_function_local():
     print("# {}()".format(sys._getframe().f_code.co_name))
@@ -13,9 +19,57 @@ def test_function_global_2():
 
 def test_function_global_3():
     print("# {}()".format(sys._getframe().f_code.co_name))
-    global a
+    global a    # 함수 안에서 전역변수의 내용을 변경하기 위해 반드시 선언
     a = 333
     print(a)
+
+def test_function_lamda():
+    print("# {}()".format(sys._getframe().f_code.co_name))
+    ld_func = lambda x : x**2
+    print(ld_func(2))
+    print((lambda x : x ** 2)(2))
+
+def test_function_built_in():
+    print("# {}()".format(sys._getframe().f_code.co_name))
+    print("# int 함수 : 실수나 문자열을 정수로 변환 (실수의 경우 소수점 이하는 버리는 방식)")
+    print(int(0.123), int(3.912), int(-1.999), int("123"))      # 0 3 -1 123
+    check_exception(int, "123d")                # <class 'ValueError'> invalid literal for int() with base 10: '123d'
+    check_exception(int, "12.3")                # <class 'ValueError'> invalid literal for int() with base 10: '12.3'
+    print("# float 함수 : 정수나 문자열을 실수로 변환")
+    print(float(0), float(123), float(-123), float("1.23"))     # 0.0 123.0 -123.0 1.23
+    check_exception(float, "0.123f")            # <class 'ValueError'> could not convert string to float: '0.123f'
+    check_exception(int, "123")                 # 123
+    print("# str 함수 : 정수나 실수를 문자열로 변환")
+    print(str(123), str(-123), str(0.123), str(12.3), (-12.3))  # 123 -123 0.123 12.3 -12.3
+    print("# 형 변환 함수")
+    print(list((1,2,3)), list({1,2,3}))
+    print(tuple([1,2,3]), tuple({1,2,3}))
+    print(set([1,2,3]), set((1,2,3)))
+    print("# 형 확인 함수 : 데이터 타입을 확인")
+    print(type(123), type(1.23), type("123"))   # <class 'int'> <class 'float'> <class 'str'>
+    print(type([]), type(()), type({}))         # <class 'list'> <class 'tuple'> <class 'dict'>
+    print("# bool 함수 : 숫자를 True 또는 False로 변환")
+    print(bool(0), bool(0.0))                                   # False False
+    print(bool(123), bool(-123), bool(1.23), bool(-1.23))       # True True True True
+    print(bool("adf"), bool(" "), bool(""), bool(None))         # True True False False
+    print(bool([1,2,3]), bool([]))                              # True False
+    print(bool((1,2,3)), bool(()))                              # True False
+    print(bool({1,2,3}), bool({}))                              # True False
+    print("# min & max 함수 : 최소값과 최대값을 찾음")
+    print(min([1,2,3]), max([1,2,3]))                           # 1 3
+    print(min((1,2,3)), max((1,2,3)))                           # 1 3
+    print(min({1,2,3}), max({1,2,3}))                           # 1 3
+    print(min("AaBbC"), max("AaBbC"))                           # A b
+    print(min({"Abc","abc","bcd","bce"}))                       # Abc
+    print(max({"Abc","abc","bcd","bce"}))                       # bce
+    print("# abs 함수 : 절대값")
+    print(abs(123), abs(-123))                                  # 123 123
+    print(abs(1.23), abs(-1.23))                                # 1.23 1.23
+    print("# sum 함수 : 전체합")
+    print(sum([1,2,3]))                                         # 6
+    print(sum((1,2,3)))                                         # 6
+    print(sum({1,2,3}))                                         # 6
+    check_exception(sum, ["1","22","333"])      # <class 'TypeError'> unsupported operand type(s) for +: 'int' and 'str'
 
 #########################################################    
 
@@ -27,10 +81,14 @@ if (__name__ == "__main__"):
             print("1. test_function_local()")
             print("2. test_function_global_2()")
             print("3. test_function_global_3()")
+            print("4. test_function_lamda()")
+            print("5. test_function_built_in()")
             menu = int(input("please, select menu? "))
             if (menu == 1): test_function_local()
             elif (menu == 2): test_function_global_2()
             elif (menu == 3): test_function_global_3()
+            elif (menu == 4): test_function_lamda()
+            elif (menu == 5): test_function_built_in()
             else: break
     except Exception as ex:
         print("# [NG] {} {}".format(type(ex), ex))
