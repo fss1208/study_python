@@ -123,46 +123,68 @@ def test_string_method():
     up_str = "PYTHON"
     st_str = "   python   "
     temp, beta = "AbcDEFghi", "β"
-    print("# upper 함수")
+    print("# upper() : 전체 문자열을 대문자로 변환")
     print("%s >> %s" % (lo_str, lo_str.upper()))                    # python >> PYTHON
-    print("# lower 함수")
+    print("# lower() : 전체 문자열을 소문자로 변환")
     print("%s >> %s" % (up_str, up_str.lower()))                    # PYTHON >> python
-    print("# capitalize 함수")
+    print("# capitalize() : 첫문자는 대문자로 나머지는 소문자로 변환")
     print("%s >> %s" % (lo_str, lo_str.capitalize()))               # python >> Python
     print("%s >> %s" % (up_str, up_str.capitalize()))               # PYTHON >> Python
-    print("# casefold 함수")
+    print("# casefold() : 비교 판단 가능한 문자열로 변환")
     print("%s >> %s" % (temp, temp.casefold()))                     # AbcDEFghi >> abcdefghi
     print("%s >> %s" % (beta, beta.casefold()))                     # β >> β
-    print("# center 함수")
+    print("# center(반복회수, '반복문자열')")
     print(lo_str.center(12,"*"))                                    # ***python***
-    print("# count 함수")
+    print("# count('카운팅문자열', start_index=0, end_index=문자열길이)")
     print("0113336666633".count("3"))                               # 5
     print("0113336666633".count("3",5))                             # 3
     print("0113336666633".count("3",5,11))                          # 1 :  start_index <= 범위 < end_index
-    print("# find 함수")
+    print("# find('찾을문자열', start_index=0, end_index=문자열길이)")
     print(lo_str.find("tho"))                                       # 2
+    print(lo_str.find("tho", 3))                                    # -1 : start_index(3)에서 끝까지
+    print(lo_str.find("tho", 2, 4))                                 # -1 : start_index(2) <= 범위 < end_index(4)
     print(lo_str.find("t"))                                         # 2
     print(up_str.find("t"))                                         # -1
-    print("# replace 함수")
+    print("# replace('old','new',count=-1) : count를 지정하지 않으면 전체를 바꾸고 지정하면 해당 횟수만큼 왼쪽에서 부터 바꿈")
     print("%s >> %s" % (up_str, up_str.replace("YTHO", "ytho")))    # PYTHON >> PythoN
     print("%s >> %s" % (lo_str, lo_str.replace("YTHO", "ytho")))    # python >> python
-    print("# isdigit 함수")
+    print("abbcccddddcccbbabbccccdddd".replace("bb", "BB"))         # aBBcccddddcccBBaBBccccdddd
+    print("abbcccddddcccbbabbccccdddd".replace("bb", "BB", 2))      # aBBcccddddcccBBabbccccdddd
+    print("# isdigit() : 문자열이 모두 숫자로 구성되어 있을 때만 True")
     print("123".isdigit())                                          # True
-    print("12a".isdigit())                                          # False
-    print("1 3".isdigit())                                          # False
-    print("# isalpha 함수")
+    print("12a".isdigit())                                          # False : 문자 포함
+    print("1 3".isdigit())                                          # False : 공백 포함
+    print("# isalpha() : 문자열이 숫자,특수문자,공백이 아닌 문자로 구성되어 있을 때만 True")
     print("abc".isalpha())                                          # True
     print("ab1".isalpha())                                          # False
     print("a c".isalpha())                                          # False
-    print("# startswith 함수")
+    print("# isalnum() : 문자열이 특수문자,공백이 아닌 문자와 숫자로 구성되어 있을 때만 True")
+    print("Python1".isalnum())                                      # True
+    print("Python1 ".isalnum())                                     # False
+    print("Python1\t".isalnum())                                    # False
+    print("# isspace() : 문자열이 모두 공백 문자로 구성되어 있을 때만 True")
+    print("     ".isspace())                                        # True
+    print("\t".isspace())                                           # True
+    print("\n".isspace())                                           # True
+    print("\n \t".isspace())                                        # True
+    print("\n \t.".isspace())                                       # False
+    print("# isupper() : 문자열이 모두 대문자로 구성되어 있을 때만 True")
+    print("ABC".isupper())                                          # True
+    print("AbC".isupper())                                          # False
+    print("# islower() : 문자열이 모두 소문자로 구성되어 있을 때만 True")
+    print("abc".islower())                                          # True
+    print("aBc".islower())                                          # False
+    print("# startswith('찾을문자열', start_index=0, end_index=문자열길이)")
     print(lo_str.startswith("py"))                                  # True
     print(lo_str.startswith("th"))                                  # False
-    print("# endswith 함수")
+    print(lo_str.startswith("th",2))                                # True : start_index(2)에서 끝까지
+    print(lo_str.startswith("th",2,3))                              # False : start_index(2) <= 범위 < end_index(3)
+    print("# endswith('찾을문자열', start_index=0, end_index=문자열길이)")
     print(lo_str.endswith("on"))                                    # True
-    print(lo_str.endswith("hon"))                                   # True
     print(lo_str.endswith("ho"))                                    # False
-    print(lo_str.endswith("tho", 0, 5))                             # True
-    print("# split 함수")
+    print(lo_str.endswith("ho", 3))                                 # False : start_index(3)에서 끝까지
+    print(lo_str.endswith("ho", 1, 5))                              # True : start_index(1) <= 범위 < end_index(5)
+    print("# split('구분문자열', 최대구분횟수)")
     print("a,bb,ccc".split(","))                                    # ["a", "bb", "ccc"]
     print("a,bb,ccc".split(",",maxsplit=1))                         # ['a', 'bb,ccc']
     print("a,bb,ccc".split(",",maxsplit=9))                         # ['a', 'bb', 'ccc']
@@ -170,6 +192,9 @@ def test_string_method():
     print("+82-01-2345-6789".split("-",maxsplit=1))                 # ['+82', '01-2345-6789']
     print("+82-01-2345-6789".split("2-0"))                          # ['+8', '1-2345-6789']
     print("+82-01-2345-6789".split("A"))                            # ['+82-01-2345-6789']
+    print("  abc \t def \t\t\n ghi ".split(" "))                    # ['', '', 'abc', '\t', 'def', '\t\t', 'ghi', '']
+    print("  abc \t def \t\t\n ghi ".split("\t"))                   # ['  abc ', ' def ', '', ' ghi ']
+    print("  abc \t def \t\t\n ghi ".split())                       # ['abc', 'def', 'ghi']
     print("# join 함수")
     print(",".join(["a", "bb", "ccc"]))                             # a,bb,ccc
     print("-".join(no_str))                                         # 0-1-2-3-4-5
