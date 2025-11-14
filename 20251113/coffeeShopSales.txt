@@ -1,0 +1,5 @@
+date    espresso  americano  cafelatte  cappuccino
+10.15       10  	50         45       20   
+10.16       12		45         41       18
+10.17       11		53         32       25
+10.18       15		49         38       22
