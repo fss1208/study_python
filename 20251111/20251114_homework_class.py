@@ -27,12 +27,12 @@ class RowData:
     #
     def set_cell(self, key, value):
         if (key not in self.__row_dict):
-            raise StudentError("'{}'는 존재하지 않는 KEY 입니다!")
+            raise StudentError("'{}'는 존재하지 않는 KEY 입니다!".format(key))
         self.__row_dict[key] = value
     #
     def get_cell(self, key):
         if (key not in self.__row_dict):
-            raise StudentError("'{}'는 존재하지 않는 KEY 입니다!")
+            raise StudentError("'{}'는 존재하지 않는 KEY 입니다!".format(key))
         return self.__row_dict[key]
     #
     @staticmethod
@@ -40,11 +40,13 @@ class RowData:
         return cell_string.center(RowData.cell_width, " ")
 
 class StudentRowData(RowData):
+    #
     sum_key = "sum"
     avg_key = "avg"
     input_key_list = ["name", "kor", "mat", "eng", "sci"]
     total_key_list = ["name", "kor", "mat", "eng", "sci", sum_key, avg_key]
     title_list = ["NAME", "KOREAN", "MATH", "ENGLISH", "SCIENCE", "SUM", "AVERAGE"]
+    #
     def __init__(self, input_string_list):
         if (len(input_string_list) == len(StudentRowData.input_key_list)):
             input_string_list.append("0")   # sum
