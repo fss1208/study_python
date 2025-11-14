@@ -2,42 +2,42 @@ import KSH
 
 a = 5 # 전역변수
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_local():
     a = 111
     print(a)
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_global_2():
     print(a)
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_global_3():
     global a    # 함수 안에서 전역변수의 내용을 변경하기 위해 반드시 선언
     a = 333
     print(a)
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_global_4():
     a += 1      # <class 'UnboundLocalError'> cannot access local variable 'a' where it is not associated with a value
     print(a)    # a가 지역변수로 생성되기 전에 사용되어 에러 발생 (a += 1 >> a = a + 1)
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_lamda():
     ld_func = lambda x : x**2
     print(ld_func(2))
     print((lambda x : x ** 2)(2))
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_built_in():
     print("# int 함수 : 실수나 문자열을 정수로 변환 (실수의 경우 소수점 이하는 버리는 방식)")
     print(int(0.123), int(3.912), int(-1.999), int("123"))      # 0 3 -1 123
-    KSH.check_exception_arg1(int, "123d")                # <class 'ValueError'> invalid literal for int() with base 10: '123d'
-    KSH.check_exception_arg1(int, "12.3")                # <class 'ValueError'> invalid literal for int() with base 10: '12.3'
+    KSH.check_exception(int, "123d")                # <class 'ValueError'> invalid literal for int() with base 10: '123d'
+    KSH.check_exception(int, "12.3")                # <class 'ValueError'> invalid literal for int() with base 10: '12.3'
     print("# float 함수 : 정수나 문자열을 실수로 변환")
     print(float(0), float(123), float(-123), float("1.23"))     # 0.0 123.0 -123.0 1.23
-    KSH.check_exception_arg1(float, "0.123f")            # <class 'ValueError'> could not convert string to float: '0.123f'
-    KSH.check_exception_arg1(int, "123")                 # 123
+    KSH.check_exception(float, "0.123f")            # <class 'ValueError'> could not convert string to float: '0.123f'
+    KSH.check_exception(int, "123")                 # 123
     print("# str 함수 : 정수나 실수를 문자열로 변환")
     print(str(123), str(-123), str(0.123), str(12.3), (-12.3))  # 123 -123 0.123 12.3 -12.3
     print("# 형 변환 함수")
@@ -68,22 +68,22 @@ def test_function_built_in():
     print(sum([1,2,3]))                                         # 6
     print(sum((1,2,3)))                                         # 6
     print(sum({1,2,3}))                                         # 6
-    KSH.check_exception_arg1(sum, ["1","22","333"])      # <class 'TypeError'> unsupported operand type(s) for +: 'int' and 'str'
+    KSH.check_exception(sum, ["1","22","333"])      # <class 'TypeError'> unsupported operand type(s) for +: 'int' and 'str'
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_default_arg(year, month, day = 1):
     print("{}-{}-{}".format(year, month, day))
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_Keyword_arg(year, month, day):
     print("{}-{}-{}".format(year, month, day))
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_variable_arg(*args, **dicts):
     print(type(args))
     print(type(dicts))
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_overap():
     a = 1
     def inner1():
@@ -94,7 +94,7 @@ def test_function_overap():
         inner2()
     inner1()
 
-@KSH.func_head
+@KSH.func_decorator
 def test_function_decorator():
     print("Test Decorator!")
 
