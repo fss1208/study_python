@@ -1,3 +1,5 @@
+import os
+
 class StudentError(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -137,11 +139,44 @@ class StudentManager:
         path_file_list = __file__.split("\\")
         write_file = __file__.replace(path_file_list[-1], "result.txt")
         with open(write_file, "wt") as f:
+            line_width = RowData.cell_width * len(StudentRowData.title_list)
+            for title_text in StudentRowData.title_list:
+                f.write(RowData.to_cell_string(title_text))
+            f.write("\n{}\n".format("-" * line_width))
             for student_data in self.__student_list:
                 student_data.write_file(f)
+            f.write("{}\n".format("-" * line_width))
+            self.__min_row.write_file(f)
+            self.__max_row.write_file(f)
+            f.write("{}\n".format("-" * line_width))
+            self.__total_row.write_file(f)
 
 if (__name__ == "__main__"):
-    sm = StudentManager()
-    sm.load()
-    sm.calculate()
-    sm.print()
+    try:
+        print("# 시작")
+        sm = StudentManager()
+        while (True):
+            print("1. 파일로부터 불러오기 (student_score.txt)")
+            print("2. 계산하기 (합계, 평균, 최대, 최소)")
+            print("3. 파일에 저장하기 (result.txt)")
+            menu_no = input("메뉴 번호를 입력해주세요 : ")
+            if (menu_no == "1"):
+                sm.load()
+                sm.print()
+            elif (menu_no == "2"):
+                sm.calculate()
+                sm.print()
+            elif (menu_no == "3"):
+                sm.save()
+                path_file_list = __file__.split("\\")
+                write_file = __file__.replace(path_file_list[-1], "result.txt")
+                os.system("notepad.exe " + write_file)
+            else:
+                print("잘못 입력하셨습니다!")
+    except Exception as ex:
+        print("# [NG] {} {}".format(type(ex), ex))
+    else: # 예외가 발행하지 않을 때만 실행
+        print("# [OK]")
+    finally: # 예외 발생 여부와 관계없이 항상 실행
+        print("# 종료")
+        
