@@ -15,6 +15,12 @@ class RowData:
         for i in range(len(key_list)):
             self.__row_dict[key_list[i]] = value_list[i]
     #
+    def __str__(self):
+        return str(self.__row_dict)
+    #
+    def __repr__(self):
+        return "{}({},{})".format(self.__class__.__name__, list(self.__row_dict.keys()), list(self.__row_dict.values()))
+    #
     def print_screen(self):
         for k, v in self.__row_dict.items():
             print(RowData.to_cell_string(v) if (v is str) else RowData.to_cell_string(str(v)), end="")
