@@ -37,6 +37,9 @@ class TestClass:
     def print(self):
         print(self.public_value, self._protected_value, self.__private_value, sep=",")
 
+class ChildTestClass(TestClass):
+    pass
+
 #########################################################    
 
 @KSH.func_decorator
@@ -78,6 +81,20 @@ def test_class_static_method():
     TestClass.set_staticmethod_class_member(999)
     TestClass.print_staticmethod_class_member()     # 999
 
+@KSH.func_decorator
+def test_type_check():
+    parent_object = TestClass()
+    child_object = ChildTestClass()
+    print(isinstance(parent_object, TestClass))                 # True
+    print(isinstance(child_object, ChildTestClass))             # True
+    print(isinstance(parent_object, ChildTestClass))            # False
+    print(issubclass(ChildTestClass, TestClass))                # True
+    print(issubclass(TestClass, ChildTestClass))                # False
+    KSH.check_exception(issubclass, child_object, TestClass)    # <class 'TypeError'> issubclass() arg 1 must be a class
+    KSH.check_exception(issubclass, parent_object, TestClass)   # <class 'TypeError'> issubclass() arg 1 must be a class
+    KSH.check_exception(issubclass, TestClass, child_object)    # <class 'TypeError'> issubclass() arg 1 must be a class
+    KSH.check_exception(issubclass, TestClass, parent_object)   # <class 'TypeError'> issubclass() arg 1 must be a class
+
 #########################################################    
 
 if (__name__ == "__main__"):
@@ -87,9 +104,11 @@ if (__name__ == "__main__"):
             print("-" * 30)
             print("1. test_private_member()")
             print("2. test_class_static_method()")
+            print("3. test_type_check()")
             menu = int(input("please, select menu? "))
             if (menu == 1): test_private_member()
             elif (menu == 2): test_class_static_method()
+            elif (menu == 3): test_type_check()
             else: break
     except Exception as ex:
         print("# [NG] {} {}".format(type(ex), ex))
