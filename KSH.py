@@ -8,15 +8,8 @@ def func_decorator(func):
         func(*args, **dicts)
     return func_info_1
 
-def check_exception(func, *args):
+def check_exception(func, *args, **dicts):
     try:
-        if (len(args) == 1):
-            print(func(args[0]))
-        elif (len(args) == 2):
-            print(func(args[0], args[1]))
-        elif (len(args) == 3):
-            print(func(args[0], args[1], args[2]))
-        else:
-            print("Not defined!")
+        func(args, dicts)
     except Exception as ex:
         print("# [NG] {} {}".format(type(ex), ex))
