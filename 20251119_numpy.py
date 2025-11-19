@@ -137,7 +137,7 @@ def test_numpy_matrix():
     print(a1, "\n", a3)                     # [[0 1] [2 3]] \n [[-1.5  0.5] [ 1.   0. ]]
     print(a1.dot(a3))                       # [[1. 0.] [0. 1.]]
     print("\n# 행렬식 구하기")
-    a3 = np.linalg.det(a1) 
+    a3 = np.linalg.det(a1)                  # det = ad - bc ([ [a b] [c d] ])
     print(type(a3), a3)                     # <class 'numpy.float64'> -2.0
  
 def test_numpy_indexing():
