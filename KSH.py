@@ -5,7 +5,9 @@ def func_decorator(func):
         print("-" * 30)
         print("# <{}>".format(DT.datetime.today()))
         print("# {}()".format(func.__name__))
+        print()
         func(*args, **dicts)
+        print()
     return func_info_1
 
 def check_exception(func, *args, **dicts):
