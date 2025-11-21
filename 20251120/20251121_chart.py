@@ -46,7 +46,6 @@ class ChartManager:
         mpl.rcParams['axes.unicode_minus'] = False
 
     def show_pie_chart_by_sex(self):
-        plt.clf()
         plt.figure(figsize=(10,10))
         chart_dict = self.extract_chart_data("성별")
         ChartManager.make_pie_chart(2, 2, 1, chart_dict, "운동을 할 충분한 시간이 없어서")
@@ -57,7 +56,6 @@ class ChartManager:
         plt.show()
 
     def show_pie_chart_by_age(self):
-        plt.clf()
         plt.figure(figsize=(10,5))
         chart_dict = self.extract_chart_data("연령별")
         ChartManager.make_pie_chart(1, 3, 1, chart_dict, "운동을 할 충분한 시간이 없어서")
@@ -67,7 +65,6 @@ class ChartManager:
         plt.show()
 
     def show_pie_chart_by_elevel(self):
-        plt.clf()
         plt.figure(figsize=(18,5))
         chart_dict = self.extract_chart_data("학력별")
         ChartManager.make_pie_chart(1, 2, 1, chart_dict, "운동을 할 충분한 시간이 없어서")
