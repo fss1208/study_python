@@ -1,0 +1,9 @@
+Pregnancies : 임신 횟수
+Glucose : 포도당 부하 검사 수치
+BloodPressure : 혈압
+SkinThickness : 팔 삼두근 뒤쪽의 피하지방 측정값 (피부 두께)
+Insulin : 혈청 인슐린 수치
+BMI : 체질량 지수
+DiabetesPedigreeFunction : 당뇨 내력 가중치 값 (당뇨병 가족력)
+Age : 나이
+Outcome : 당뇨 여부 (0 : 당뇨 아님, 1 : 당뇨병)
